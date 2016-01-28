@@ -1,14 +1,29 @@
-from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import Column, String, Integer, ForeignKey, DateTime
+from sqlalchemy.orm import relationship
+from sqlalchemy.ext.declarative import declarative_base
 import datetime
 
-db = SQLAlchemy()
+Base = declarative_base()
 
 
-class FeedItem(db.Model):
-    feedId = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    url = db.Column(db.String(400))
-    date = db.Column(db.DateTime)
+class FeedItem(Base):
+    __tablename__ = "feed_items"
+    feedId = Column(Integer, primary_key=True, autoincrement=True)
+    url = Column(String(400))
+    date = Column(DateTime)
+    user_id = Column(String, ForeignKey("users.username"))
 
     def __init__(self, url):
         self.url = url
         self.date = datetime.datetime.now()
+
+
+class User(Base):
+    __tablename__ = "users"
+    username = Column(String(250), primary_key=True)
+    password = Column(String(250))
+    items = relationship("FeedItem")
+
+    def __init__(self, name, password):
+        self.username = name
+        self.password = password

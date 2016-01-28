@@ -1,13 +1,13 @@
 from flask import Flask
 from flask import render_template
 
-from models import db,FeedItem
+from models import FeedItem
 import rss
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
 app.debug = True
-db.init_app(app)
+
 
 
 @app.before_first_request

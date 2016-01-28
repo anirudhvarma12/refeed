@@ -1,12 +1,12 @@
 from bs4 import BeautifulSoup
-from models import FeedItem
+import dbservice
 import datetime
 import PyRSS2Gen
 import urllib
 
 
 def get_feed_items():
-    return FeedItem.query.all()
+    return dbservice.get_feed_items()
 
 
 def get_rss():
