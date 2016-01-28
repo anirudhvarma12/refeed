@@ -23,6 +23,19 @@ def add_user(username, password):
     session.commit()
 
 
+def get_user(username):
+    query = (session.query(User).filter_by(username=username))
+    return query.first()
+
+
+def authenticate(username, password):
+    user = get_user(username)
+    if(user is None):
+        return None
+    else:
+        return bcrypt.check_password_hash(user.password, password)
+
+
 def get_feed_items():
     query = (session.query(FeedItem).order_by(desc(FeedItem.date)))
     return query.all()

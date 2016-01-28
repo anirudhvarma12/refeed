@@ -11,9 +11,10 @@ class FeedItem(Base):
     feedId = Column(Integer, primary_key=True, autoincrement=True)
     url = Column(String(400))
     date = Column(DateTime)
+    title = Column(String(255))
     user_id = Column(String, ForeignKey("users.username"))
 
-    def __init__(self, url):
+    def __init__(self, url, title):
         self.url = url
         self.date = datetime.datetime.now()
 
