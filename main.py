@@ -29,10 +29,11 @@ def login():
             error = "User not exists"
         elif user:
             url = request.form['url']
-            #description = request.form['description']
+            description = request.form['description']
             description = ""
             existing_item = dbservice.get_feed_by_url(url)
             if existing_item is None:
+                print("No existing feed item found")
                 item = rss.get_feed_item(url, description, user)
                 dbservice.store_item(item)
                 error = "Success"

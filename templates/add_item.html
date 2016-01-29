@@ -12,7 +12,8 @@
 		request.form.password }}" required />
 		<input type="url" placeholder="Link" name="url" value="{{
 		request.form.url }}" required />
-		<!-- <input type="text" value="{{request.form.description }}" placeholder="Description" /> -->
+		<input type="text" placeholder="Description" name="description" value="{{
+		request.form.description }}" />
 		<input class="btn btn-default" type="submit" value="Add Item">
 	</form>
 	{% if error %}

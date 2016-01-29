@@ -23,12 +23,7 @@ def get_rss():
 
 
 def convert(item):
-    print("Parsing item " + item.url)
-    request = urllib.request.Request(
-        item.url, headers={"User-Agent": "Mozila/5.0"})
-    client = urllib.request.urlopen(request)
-    soup = BeautifulSoup(client.read(), "html.parser")
-    return PyRSS2Gen.RSSItem(title=soup.title.string, link=item.url, description="")
+    return PyRSS2Gen.RSSItem(title=item.title, link=item.url, description=item.description, pubDate=item.date)
 
 
 def get_feed_item(url, description, user_id):
@@ -48,6 +43,7 @@ def get_feed_item(url, description, user_id):
 def is_feed_allowed(existing_item_date, new_item_date):
     time_diff = existing_item_date.date - new_item_date.date
     days = time_diff.days
+    print('Number of days ' + days)
     if days < 7:
         return True
 
