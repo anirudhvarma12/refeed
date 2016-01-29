@@ -33,6 +33,7 @@ def authenticate(username, password):
     if(user is None):
         return None
     else:
+        print("Comparing password for " + user.username)
         return bcrypt.check_password_hash(user.password, password)
 
 
@@ -48,4 +49,4 @@ def get_feed_by_url(url):
 
 def store_item(feed_item):
     session.add(feed_item)
-    session.commit
+    session.commit()
