@@ -10,7 +10,7 @@ app.debug = True
 
 @app.route("/")
 def hello():
-    return render_template("index.html")
+    return render_template("index.html", title=dbservice.get_settings().title)
 
 
 @app.route("/feed")
@@ -19,7 +19,7 @@ def get_feed():
 
 
 @app.route("/add", methods=['GET', 'POST'])
-def login():
+def add():
     error = None
     if request.method == 'POST':
         username = request.form['username']
