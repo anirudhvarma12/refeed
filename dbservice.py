@@ -1,6 +1,6 @@
 from main import app
 from flask_bcrypt import Bcrypt
-from models import User, FeedItem
+from models import User, FeedItem, Settings
 from sqlalchemy import create_engine, desc
 from sqlalchemy.orm import sessionmaker
 from models import Base
@@ -50,3 +50,29 @@ def get_feed_by_url(url):
 def store_item(feed_item):
     session.add(feed_item)
     session.commit()
+
+
+def get_settings():
+    settings = session.query(Settings).first()
+    if settings is None:
+        settings = Settings()
+    return settings
+
+
+def set_main_url(url):
+    settings = get_settings()
+    settings.main_url = url
+    session.add(settings)
+    session.commit()
+
+
+def set_description(desc):
+    settings = get_settings()
+    settings.description = desc
+    session.add(settings)
+    session.commit()
+
+
+def set_title(title):
+    settings = get_settings()
+    settings.title = title
