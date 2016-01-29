@@ -41,10 +41,10 @@ def get_feed_item(url, description, user_id):
 
 
 def is_feed_allowed(existing_item_date, new_item_date):
-    time_diff = existing_item_date.date - new_item_date.date
+    time_diff = new_item_date - existing_item_date
     days = time_diff.days
-    print('Number of days ' + days)
-    if days < 7:
+    print('Number of days ' + str(days))
+    if days > 7:
         return True
 
     return False
