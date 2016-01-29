@@ -11,14 +11,14 @@ def get_feed_items():
 
 
 def get_rss():
+    settings = dbservice.get_settings()
     all_feeds = get_feed_items()
     size = len(all_feeds)
     rss = PyRSS2Gen.RSS2(
-        title="Devs and Hackers Feed", lastBuildDate=datetime.datetime.now(),
-        link="foo", description="ffee")
+        title=settings.title, lastBuildDate=datetime.datetime.now(),
+        link=settings.main_url, description=settings.description)
     for i in range(size):
         rss.items.append(convert(all_feeds[i]))
-
     return rss.to_xml()
 
 

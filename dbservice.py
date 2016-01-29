@@ -76,3 +76,5 @@ def set_description(desc):
 def set_title(title):
     settings = get_settings()
     settings.title = title
+    session.add(settings)
+    session.commit()
