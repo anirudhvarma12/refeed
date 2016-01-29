@@ -17,7 +17,7 @@ def get_feed():
     return rss.get_rss()
 
 
-@app.route("/login", methods=['GET', 'POST'])
+@app.route("/add", methods=['GET', 'POST'])
 def login():
     error = None
     if request.method == 'POST':
@@ -31,7 +31,7 @@ def login():
         else:
             error = "Could not authenticate"
 
-    return render_template("login.html", error=error)
+    return render_template("add_item.html", error=error)
 
 if __name__ == "__main__":
     app.run()
