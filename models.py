@@ -12,11 +12,13 @@ class FeedItem(Base):
     url = Column(String(400))
     date = Column(DateTime)
     title = Column(String(255))
+    description = Column(String(500))
     user_id = Column(String, ForeignKey("users.username"))
 
     def __init__(self, url, title):
         self.url = url
         self.date = datetime.datetime.now()
+        self.title = title
 
 
 class User(Base):

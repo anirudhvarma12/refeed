@@ -7,10 +7,13 @@
 <body>
 	<form action="" method="post">
 		<input type="text" placeholder="Username" name="username" value="{{
-		request.form.username }}">
+		request.form.username }}" required />
 		<input type="password" placeholder="Password" name="password" value="{{
-		request.form.password }}">
-		<input class="btn btn-default" type="submit" value="Login">
+		request.form.password }}" required />
+		<input type="url" placeholder="Link" name="url" value="{{
+		request.form.url }}" required />
+		<!-- <input type="text" value="{{request.form.description }}" placeholder="Description" /> -->
+		<input class="btn btn-default" type="submit" value="Add Item">
 	</form>
 	{% if error %}
 	<p class="error"><strong>Error:</strong> {{ error }}

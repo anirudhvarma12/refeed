@@ -39,3 +39,13 @@ def authenticate(username, password):
 def get_feed_items():
     query = (session.query(FeedItem).order_by(desc(FeedItem.date)))
     return query.all()
+
+
+def get_feed_by_url(url):
+    query = (session.query(FeedItem).filter_by(url=url))
+    return query.first()
+
+
+def store_item(feed_item):
+    session.add(feed_item)
+    session.commit
