@@ -1,0 +1,5 @@
+Flask=0.10.1
+Flask-Bcrypt=0.7.1
+Flask-SQLAlchemy=2.1
+beautifulsoup4=4.4.1
+PyRSS2Gen=1.1
