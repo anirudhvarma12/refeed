@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
 	<link rel="stylesheet" type="text/css" href="static/style.css">
-	<link href='https://fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>	
+    <meta content="width=device-width, initial-scale=1" name="viewport">
 	<meta charset="UTF-8">
 	<title>Add Item</title>
 </head>
@@ -21,8 +22,11 @@
 		</form>
 		{% if error %}
 		<p class="error"><strong>Message:</strong> {{ error }}
-			{% endif %}
+		{% endif %}
 		</p>
+	</div>
+	<div class="add-link">
+		<a href="{{url_for('index')}}">&lsaquo; <span>Home</span></a>
 	</div>
 </body>
 

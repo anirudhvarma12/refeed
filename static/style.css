@@ -58,6 +58,7 @@ a {
 form {
 	display: inline-block;
 	padding: 20px;
+	padding-bottom: 17px;
 	border-radius: 3px;
 	width: 500px;
 	margin: 0 auto;
@@ -70,6 +71,18 @@ form {
 	width: 100%;
 	border: 0;
 	border-bottom: 1px solid #ccc;
+}
+.btn {
+	display: inline-block;
+	background: transparent;
+	border: none;
+	float: right;
+	cursor: pointer;
+	color: #0d3c37;
+	border-bottom: 3px solid transparent;
+}
+.btn:hover {
+	border-bottom-color: #39e3c5
 }
 @media only screen and (max-width:40.0625em) {
 	.add-link {
