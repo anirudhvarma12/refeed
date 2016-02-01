@@ -1,0 +1,85 @@
+body, html {
+	position: relative;
+	height: 100%;
+	width: 100%;
+	margin: 0;
+	padding: 0;
+}
+body {
+	background: #0d3c37;
+	color: #fff;
+	font-family: 'Roboto', sans-serif;
+	font-weight: 300;
+}
+* {
+	box-sizing: border-box;
+}
+a {
+	text-decoration: none;
+	font: inherit;
+	color: inherit;
+}
+.content {
+	text-align: center;
+	padding-top: 15%;
+}
+.hero-text {
+	font-size: 3.5em;
+	margin-top: 0;
+}
+.hero-text>span {
+	color: #39e3c5;
+	font-weight: 300;
+	display: block;
+}
+.subscribe-link {
+	display: inline-block;
+	padding: 5px 0px;
+	font-size: 1.5em;
+	border-bottom: 3px solid #39e3c5;
+}
+.add-link {
+	display: inline-block;
+	position: absolute;
+	right: 0px;
+	bottom: 0px;
+	font-weight: 300;
+	font-size: 2.5em;
+	background: #092724;
+}
+.add-link>a {
+	display: block;
+	padding: 15px 30px;
+}
+.add-link>a>span {
+	display: none;
+	margin-right: 20px;
+}
+form {
+	display: inline-block;
+	padding: 20px;
+	border-radius: 3px;
+	width: 500px;
+	margin: 0 auto;
+	background: #fff;
+}
+.input {
+	display: block;
+	padding: 5px;
+	margin-bottom: 10px;
+	width: 100%;
+	border: 0;
+	border-bottom: 1px solid #ccc;
+}
+@media only screen and (max-width:40.0625em) {
+	.add-link {
+		display: block;
+		width: 100%;
+		left: 0;
+		font-size: 1.3em;
+		text-align: center;
+	}
+	.add-link>a>span {
+		display: inline-block;
+	}
+}
