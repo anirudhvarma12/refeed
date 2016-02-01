@@ -4,6 +4,7 @@ import dbservice
 import datetime
 import PyRSS2Gen
 import urllib
+import settings
 
 
 def get_feed_items():
@@ -11,7 +12,6 @@ def get_feed_items():
 
 
 def get_rss():
-    settings = dbservice.get_settings()
     all_feeds = get_feed_items()
     size = len(all_feeds)
     rss = PyRSS2Gen.RSS2(

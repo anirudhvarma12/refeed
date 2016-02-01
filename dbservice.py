@@ -1,11 +1,12 @@
 from main import app
 from flask_bcrypt import Bcrypt
-from models import User, FeedItem, Settings
+from models import User, FeedItem
 from sqlalchemy import create_engine, desc
 from sqlalchemy.orm import sessionmaker
 from models import Base
+import settings
 
-engine = create_engine("sqlite:///test.db")
+engine = create_engine("sqlite:///"+settings.db_path)
 Session = sessionmaker()
 Session.configure(bind=engine)
 session = Session()

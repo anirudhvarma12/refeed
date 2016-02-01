@@ -3,6 +3,7 @@ from flask import render_template, request
 import rss
 import datetime
 import dbservice
+import settings
 
 app = Flask(__name__)
 app.debug = True
@@ -10,7 +11,7 @@ app.debug = True
 
 @app.route("/")
 def index():
-    return render_template("index.html", title=dbservice.get_settings().title, count=dbservice.get_feed_count())
+    return render_template("index.html", title=settings.title, count=dbservice.get_feed_count())
 
 
 @app.route("/feed")

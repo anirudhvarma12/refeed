@@ -30,11 +30,3 @@ class User(Base):
     def __init__(self, name, password):
         self.username = name
         self.password = password
-
-
-class Settings(Base):
-    __tablename__ = "settings"
-    id = Column(Integer, primary_key=True, autoincrement=True)
-    main_url = Column(String(400))
-    description = Column(String(400))
-    title = Column(String(255))
