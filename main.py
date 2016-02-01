@@ -10,7 +10,7 @@ app.debug = True
 
 @app.route("/")
 def hello():
-    return render_template("index.html", title=dbservice.get_settings().title)
+    return render_template("index.html", title=dbservice.get_settings().title, count=dbservice.get_feed_count())
 
 
 @app.route("/feed")

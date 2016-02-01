@@ -1,23 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+	<link rel="stylesheet" type="text/css" href="static/style.css">
+	<link href='https://fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
 	<meta charset="UTF-8">
 	<title>Add Item</title>
 </head>
 <body>
-	<form action="" method="post">
-		<input type="text" placeholder="Username" name="username" value="{{
-		request.form.username }}" required />
-		<input type="password" placeholder="Password" name="password" value="{{
-		request.form.password }}" required />
-		<input type="url" placeholder="Link" name="url" value="{{
-		request.form.url }}" required />
-		<input type="text" placeholder="Description" name="description" value="{{
-		request.form.description }}" />
-		<input class="btn btn-default" type="submit" value="Add Item">
-	</form>
-	{% if error %}
-	<p class="error"><strong>Message:</strong> {{ error }}
-		{% endif %}
-	</body>
-	</html>
+	<div class="content">
+		<form action="" method="post">
+		    <input class="input" type="text" placeholder="Username" name="username" value="{{
+			request.form.username }}" required />
+			<input class="input" type="password" placeholder="Password" name="password" value="{{
+			request.form.password }}" required />
+			<input class="input" type="url" placeholder="Link" name="url" value="{{
+			request.form.url }}" required />
+			<input class="input" type="text" placeholder="Description" name="description" value="{{
+			request.form.description }}" />
+			<input class="btn btn-default" type="submit" value="Add Item">
+		</form>
+		{% if error %}
+		<p class="error"><strong>Message:</strong> {{ error }}
+			{% endif %}
+		</p>
+	</div>
+</body>
+
+</html>

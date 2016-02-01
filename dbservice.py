@@ -39,6 +39,7 @@ def authenticate(username, password):
 
 def get_feed_items():
     query = (session.query(FeedItem).order_by(desc(FeedItem.date)))
+    query.limit(25)
     return query.all()
 
 
@@ -78,3 +79,7 @@ def set_title(title):
     settings.title = title
     session.add(settings)
     session.commit()
+
+
+def get_feed_count():
+    return session.query(FeedItem).count()
