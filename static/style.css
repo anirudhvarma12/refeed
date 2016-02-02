@@ -38,22 +38,21 @@ a {
 	font-size: 1.5em;
 	border-bottom: 3px solid #39e3c5;
 }
-.add-link {
-	display: inline-block;
+.footer-center {
 	position: absolute;
-	right: 0px;
-	bottom: 0px;
-	font-weight: 300;
-	font-size: 2.5em;
-	background: #092724;
+	width: 100%;
+	bottom: 10px;
+	text-align: center;
 }
-.add-link>a {
-	display: block;
-	padding: 15px 30px;
+.footer-center>a {
+	display: inline-block;
 }
-.add-link>a>span {
-	display: none;
-	margin-right: 20px;
+.footer-center>a::before {
+	content: "\2022";
+	margin: 0 5px;
+}
+.footer-center>a:first-child::before {
+	content: '';
 }
 form {
 	display: inline-block;
@@ -83,16 +82,4 @@ form {
 }
 .btn:hover {
 	border-bottom-color: #39e3c5
-}
-@media only screen and (max-width:40.0625em) {
-	.add-link {
-		display: block;
-		width: 100%;
-		left: 0;
-		font-size: 1.3em;
-		text-align: center;
-	}
-	.add-link>a>span {
-		display: inline-block;
-	}
 }
