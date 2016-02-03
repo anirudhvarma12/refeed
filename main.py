@@ -23,6 +23,12 @@ def get_feed():
 @app.route("/add", methods=['GET', 'POST'])
 def add():
     error = None
+    if 'login' not in session:
+        return redirect(url_for('login'))
+    user = dbservice.get_user(username=session['login'])
+    if user is None:
+        return redirect(url_for('login'))
+
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
