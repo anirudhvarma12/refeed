@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href="static/style.css">
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>   
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <meta charset="UTF-8">
+    <title>Add Item</title>
+</head>
+<body>
+    <div class="content">
+        <form action="" method="post">
+            <input class="input" type="text" placeholder="Username" name="username" value="{{
+            request.form.username }}" required />
+            <input class="input" type="password" placeholder="Password" name="password" value="{{
+            request.form.password }}" required />
+            <input class="btn btn-default" type="submit" value="login">
+        </form>
+        {% if error %}
+        <p class="error"><strong>Message:</strong> {{ error }}
+        {% endif %}
+        </p>
+    </div>
+    <div class="footer-center">
+        <a href="{{url_for('index')}}">Home</a>
+        <a href="https://github.com/anirudhvarma12/refeed" target="_blank">Powered by Refeed </a>
+    </div>
+</body>
+
+</html>
