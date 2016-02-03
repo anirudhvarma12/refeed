@@ -35,7 +35,9 @@ def authenticate(username, password):
         return None
     else:
         print("Comparing password for " + user.username)
-        return bcrypt.check_password_hash(user.password, password)
+        if bcrypt.check_password_hash(user.password, password):
+            return user
+    return False
 
 
 def get_feed_items():
