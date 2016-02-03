@@ -1,5 +1,5 @@
 from flask import Flask
-from flask import render_template, request
+from flask import render_template, request, session, redirect, url_for
 import rss
 import datetime
 import dbservice
@@ -7,6 +7,7 @@ import settings
 
 app = Flask(__name__)
 app.debug = True
+app.secret_key = "something very secret should be set in production"
 
 
 @app.route("/")
@@ -22,6 +23,12 @@ def get_feed():
 @app.route("/add", methods=['GET', 'POST'])
 def add():
     error = None
+    if 'login' not in session:
+        return redirect(url_for('login'))
+    user = dbservice.get_user(username=session['login'])
+    if user is None:
+        return redirect(url_for('login'))
+
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
@@ -48,6 +55,38 @@ def add():
             error = "Could not authenticate"
 
     return render_template("add_item.html", error=error)
+
+
+@app.route("/login", methods=['GET', 'POST'])
+def login():
+    error = None
+    if request.method == 'GET':
+        if 'login' in session:
+            return redirect(url_for('add'))
+
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+        user = dbservice.authenticate(username, password)
+        if user is None:
+            error = "User not exists"
+        elif user:
+            session['login'] = user.username
+            return redirect(url_for('add'))
+        else:
+            error = "Could not authenticate"
+
+    return render_template("login.html", error=error)
+
+
+@app.route('/logout')
+def logout():
+    if 'login' not in session:
+        return redirect(url_for('login'))
+
+    session.pop('login', None)
+    return redirect(url_for('index'))
+
 
 if __name__ == "__main__":
     app.run()
