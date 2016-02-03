@@ -79,5 +79,14 @@ def login():
     return render_template("login.html", error=error)
 
 
+@app.route('/logout')
+def logout():
+    if 'login' not in session:
+        return redirect(url_for('login'))
+
+    session.pop('login', None)
+    return redirect(url_for('index'))
+
+
 if __name__ == "__main__":
     app.run()
