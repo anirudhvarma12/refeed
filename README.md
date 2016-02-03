@@ -1,7 +1,7 @@
 Refeed is a small webapp for groups to come together and curate a stream of content for others to consume. Re-feed provides a web interface to add links then generates an RSS out of that which can be consumed easily by any RSS reader out there.
 
 # Installation
-First run setup.py to create the schema and admin account
+First run onetime.py to create the schema and admin account
 
 ## Settings.py
 Set options for your installation here

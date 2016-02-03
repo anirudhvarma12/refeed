@@ -8,7 +8,7 @@ import settings
 app = Flask(__name__)
 app.debug = True
 app.secret_key = "something very secret should be set in production"
-
+dbservice.bcrypt.init_app(app)
 
 @app.route("/")
 def index():

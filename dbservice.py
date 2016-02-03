@@ -1,4 +1,3 @@
-from main import app
 from flask_bcrypt import Bcrypt
 from models import User, FeedItem
 from sqlalchemy import create_engine, desc
@@ -10,7 +9,7 @@ engine = create_engine("sqlite:///"+settings.db_path)
 Session = sessionmaker()
 Session.configure(bind=engine)
 session = Session()
-bcrypt = Bcrypt(app)
+bcrypt = Bcrypt()
 
 
 def create_db():
