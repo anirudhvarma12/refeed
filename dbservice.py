@@ -54,33 +54,5 @@ def store_item(feed_item):
     session.commit()
 
 
-def get_settings():
-    settings = session.query(Settings).first()
-    if settings is None:
-        settings = Settings()
-    return settings
-
-
-def set_main_url(url):
-    settings = get_settings()
-    settings.main_url = url
-    session.add(settings)
-    session.commit()
-
-
-def set_description(desc):
-    settings = get_settings()
-    settings.description = desc
-    session.add(settings)
-    session.commit()
-
-
-def set_title(title):
-    settings = get_settings()
-    settings.title = title
-    session.add(settings)
-    session.commit()
-
-
 def get_feed_count():
     return session.query(FeedItem).count()
