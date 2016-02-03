@@ -30,30 +30,21 @@ def add():
         return redirect(url_for('login'))
 
     if request.method == 'POST':
-        username = request.form['username']
-        password = request.form['password']
-        user = dbservice.authenticate(username, password)
-        if user is None:
-            error = "User not exists"
-        elif user:
-            url = request.form['url']
-            description = request.form['description']
-            description = ""
-            existing_item = dbservice.get_feed_by_url(url)
-            if existing_item is None:
-                print("No existing feed item found")
-                item = rss.get_feed_item(url, description, user)
-                dbservice.store_item(item)
-                error = "Success"
-            elif rss.is_feed_allowed(existing_item.date, datetime.datetime.now()):
-                item = rss.get_feed_item(url, description, user)
-                dbservice.store_item(item)
-                error = "Success"
-            else:
-                error = "Feed was added less than 7 days ago"
+        url = request.form['url']
+        description = request.form['description']
+        description = ""
+        existing_item = dbservice.get_feed_by_url(url)
+        if existing_item is None:
+            print("No existing feed item found")
+            item = rss.get_feed_item(url, description, user.username)
+            dbservice.store_item(item)
+            error = "Success"
+        elif rss.is_feed_allowed(existing_item.date, datetime.datetime.now()):
+            item = rss.get_feed_item(url, description, user.username)
+            dbservice.store_item(item)
+            error = "Success"
         else:
-            error = "Could not authenticate"
-
+            error = "Feed was added less than 7 days ago"
     return render_template("add_item.html", error=error)
 
 
