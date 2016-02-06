@@ -6,7 +6,7 @@ body, html {
 	padding: 0;
 }
 body {
-	background: #0d3c37;
+	background: url('rss-icon.png') left bottom no-repeat #0d3c37;
 	color: #fff;
 	font-family: 'Roboto', sans-serif;
 	font-weight: 300;

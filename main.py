@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, Response
 from flask import render_template, request, session, redirect, url_for
 import rss
 import datetime
@@ -17,7 +17,8 @@ def index():
 
 @app.route("/feed")
 def get_feed():
-    return rss.get_rss()
+    feed = rss.get_rss()
+    return Response(feed, mimetype='text/xml')
 
 
 @app.route("/add", methods=['GET', 'POST'])
