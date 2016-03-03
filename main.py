@@ -3,6 +3,7 @@ from flask import render_template, request, session, redirect, url_for
 import rss
 import datetime
 import dbservice
+import math
 import settings
 
 app = Flask(__name__)
@@ -10,9 +11,28 @@ app.debug = True
 app.secret_key = "something very secret should be set in production"
 dbservice.bcrypt.init_app(app)
 
+
 @app.route("/")
 def index():
-    return render_template("index.html", title=settings.title, count=dbservice.get_feed_count())
+    total_count = dbservice.get_feed_count()
+    current_page = request.args.get('page')
+    numberOfPages = math.floor(total_count/5)
+    if current_page is None:
+        current_page = 5
+    else:
+        current_page = int(current_page)
+    if current_page > numberOfPages:
+        current_page = numberOfPages
+    limit = (current_page-1) * 5
+    list = dbservice.get_item_after(5, limit)
+    prev_page = None
+    if current_page >= 1:
+        prev_page = current_page - 1
+    if current_page == numberOfPages:
+        current_page = None
+    else:
+        current_page = current_page+1
+    return render_template("index.html", title=settings.title, count=dbservice.get_feed_count(), feeds=list, prev_page = prev_page, new_page = current_page)
 
 
 @app.route("/feed")

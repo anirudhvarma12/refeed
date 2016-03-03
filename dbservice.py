@@ -5,7 +5,7 @@ from sqlalchemy.orm import sessionmaker
 from models import Base
 import settings
 
-engine = create_engine("sqlite:///"+settings.db_path)
+engine = create_engine("sqlite:///" + settings.db_path)
 Session = sessionmaker()
 Session.configure(bind=engine)
 bcrypt = Bcrypt()
@@ -43,8 +43,13 @@ def authenticate(username, password):
 def get_feed_items():
     session = Session()
     query = (session.query(FeedItem).order_by(desc(FeedItem.date)))
-    query.limit(25)
-    return query.all()
+    return query.limit(5).all()
+
+
+def get_item_after(startId, offset):
+    session = Session()
+    query = (session.query(FeedItem))
+    return query.limit(startId).offset(offset).all()
 
 
 def get_feed_by_url(url):
