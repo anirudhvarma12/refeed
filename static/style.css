@@ -20,7 +20,6 @@ a {
 }
 .content {
 	text-align: center;
-	padding-top: 15%;
 }
 .header {
     padding: 0 0 0 0.975em;
@@ -43,12 +42,6 @@ a {
 	display: inline-block;
 	background: url("../static/subscribe-icon.png") center right no-repeat #071e1c;
 }
-.subscribe-link {
-	display: inline-block;
-	padding: 5px 0px;
-	font-size: 1.5em;
-	border-bottom: 3px solid #39e3c5;
-}
 .footer-center {
 	position: fixed;
 	width: 100%;
@@ -70,12 +63,8 @@ a {
 }
 form {
 	display: inline-block;
-	padding: 20px;
-	padding-bottom: 17px;
-	border-radius: 3px;
 	width: 500px;
 	margin: 0 auto;
-	background: #fff;
 }
 .input {
 	display: block;

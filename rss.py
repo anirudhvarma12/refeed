@@ -34,6 +34,10 @@ def get_feed_item(url, description, user_id):
     client = urllib.request.urlopen(request)
     web_page = BeautifulSoup(client.read(), "html.parser")
     title = web_page.title.string
+    return create_feed_item(url, description, user_id, title)
+
+
+def create_feed_item(url, description, user_id, title):
     item = FeedItem(url, title)
     item.description = description
     item.user_id = user_id

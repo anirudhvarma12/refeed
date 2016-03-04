@@ -17,14 +17,14 @@ def index():
     ITEM_LIMIT = 8
     total_count = dbservice.get_feed_count()
     current_page = request.args.get('page')
-    numberOfPages = math.floor(total_count/ITEM_LIMIT)
+    numberOfPages = math.floor(total_count / ITEM_LIMIT)
     if current_page is None:
         current_page = 1
     else:
         current_page = int(current_page)
     if current_page > numberOfPages:
         current_page = numberOfPages
-    limit = (current_page-1) * ITEM_LIMIT
+    limit = (current_page - 1) * ITEM_LIMIT
     list = dbservice.get_item_after(ITEM_LIMIT, limit)
     prev_page = None
     if current_page >= 1:
@@ -32,14 +32,25 @@ def index():
     if current_page == numberOfPages:
         current_page = None
     else:
-        current_page = current_page+1
-    return render_template("index.html", title=settings.title, count=dbservice.get_feed_count(), feeds=list, prev_page = prev_page, new_page = current_page)
+        current_page = current_page + 1
+    return render_template("index.html", title=settings.title, count=dbservice.get_feed_count(), feeds=list, prev_page=prev_page, new_page=current_page)
 
 
 @app.route("/feed")
 def get_feed():
     feed = rss.get_rss()
     return Response(feed, mimetype='text/xml')
+
+
+def is_valid_title(title):
+    if title is None:
+        return False
+    elif len(title) == 0:
+        return False
+    elif str(title).isspace():
+        return False
+    else:
+        return True
 
 
 @app.route("/add", methods=['GET', 'POST'])
@@ -54,17 +65,30 @@ def add():
     if request.method == 'POST':
         url = request.form['url']
         description = request.form['description']
-        description = ""
+        title = request.form['title']
         existing_item = dbservice.get_feed_by_url(url)
         if existing_item is None:
             print("No existing feed item found")
-            item = rss.get_feed_item(url, description, user.username)
+            item = None
+            if is_valid_title(title):
+                item = rss.create_feed_item(
+                    url, description, user.username, title)
+            else:
+                item = rss.get_feed_item(url, description, user.username)
+
             dbservice.store_item(item)
             error = "Success"
         elif rss.is_feed_allowed(existing_item.date, datetime.datetime.now()):
-            item = rss.get_feed_item(url, description, user.username)
+            item = None
+            if is_valid_title(title):
+                item = rss.create_feed_item(
+                    url, description, user.username, title)
+            else:
+                item = rss.get_feed_item(url, description, user.username)
+
             dbservice.store_item(item)
             error = "Success"
+
         else:
             error = "Feed was added less than 7 days ago"
     return render_template("add_item.html", error=error, title=settings.title)
