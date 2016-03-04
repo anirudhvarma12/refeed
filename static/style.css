@@ -6,8 +6,7 @@ body, html {
 	padding: 0;
 }
 body {
-	background: url('rss-icon.png') left bottom no-repeat #0d3c37;
-	color: #fff;
+	background-color: #f8f8f8;
 	font-family: 'Roboto', sans-serif;
 	font-weight: 300;
 }
@@ -23,14 +22,26 @@ a {
 	text-align: center;
 	padding-top: 15%;
 }
-.hero-text {
-	font-size: 3.5em;
-	margin-top: 0;
+.header {
+    padding: 0 0 0 0.975em;
+    background: #0d3c37;
+    margin-bottom: 25px;
+    line-height: 60px;
+    height: 60px;
+    color: #fff;
 }
-.hero-text>span {
-	color: #39e3c5;
-	font-weight: 300;
-	display: block;
+
+.header-title {
+    font-size: 30px;
+}
+
+.header-link {
+	float: right;
+	font-size: 25px;
+	height: 60px;
+	padding:0 75px 0 20px;
+	display: inline-block;
+	background: url("../static/subscribe-icon.png") center right no-repeat #071e1c;
 }
 .subscribe-link {
 	display: inline-block;
@@ -39,10 +50,13 @@ a {
 	border-bottom: 3px solid #39e3c5;
 }
 .footer-center {
-	position: absolute;
+	position: fixed;
 	width: 100%;
-	bottom: 10px;
+	bottom: 0;
 	text-align: center;
+	background: #0d3c37;
+	color: #fff;
+	padding: 10px 0;
 }
 .footer-center>a {
 	display: inline-block;
@@ -82,4 +96,78 @@ form {
 }
 .btn:hover {
 	border-bottom-color: #39e3c5
+}
+.link-list{
+	list-style: none;
+	margin:0;
+	padding: 0;
+}
+
+.link-item{
+	width: 25%;
+	height: 200px;
+	padding: 0 0.975em;
+	margin-bottom: 1.95em;
+	display: inline-block;
+	float: left;
+}
+
+.link-card{
+	height: 100%;
+	background: #fff;
+	color: #000;
+	padding: 5px 10px;
+	position: relative;
+	box-shadow: 1px 1px 1px #1a1a1a;
+	border: 1px solid #ccc;
+}
+
+.link-content{
+	text-align: center;
+	height: 150px;
+	overflow: hidden;
+	font-size: 1.2em;
+	margin-bottom: 10px;
+}
+
+.link-url, .link-author{
+	position: absolute;
+	bottom: 5px;
+	display: inline-block;
+}
+
+.link-url{
+	right: 10px;
+	background: #0d3c37;
+	color: #fff;
+	padding: 10px 15px;
+	border-radius: 3px;
+}
+
+.link-author{
+	color: #8c8c8c;
+}
+
+.pagination{
+	text-align: center;
+	margin-bottom: 25px;
+}
+
+.pagination>a{
+	display: inline-block;
+	vertical-align: middle;
+	padding: 10px 15px;
+	background: #071e1c;
+	border-radius: 3px;
+	margin-right: 15px;
+	color: #fff;
+}
+
+.wrapper {
+	position: relative;
+}
+
+.main{
+	overflow: hidden;
+	padding-bottom: 100px;
 }

@@ -14,17 +14,18 @@ dbservice.bcrypt.init_app(app)
 
 @app.route("/")
 def index():
+    ITEM_LIMIT = 8
     total_count = dbservice.get_feed_count()
     current_page = request.args.get('page')
-    numberOfPages = math.floor(total_count/5)
+    numberOfPages = math.floor(total_count/ITEM_LIMIT)
     if current_page is None:
-        current_page = 5
+        current_page = 1
     else:
         current_page = int(current_page)
     if current_page > numberOfPages:
         current_page = numberOfPages
-    limit = (current_page-1) * 5
-    list = dbservice.get_item_after(5, limit)
+    limit = (current_page-1) * ITEM_LIMIT
+    list = dbservice.get_item_after(ITEM_LIMIT, limit)
     prev_page = None
     if current_page >= 1:
         prev_page = current_page - 1
@@ -66,7 +67,7 @@ def add():
             error = "Success"
         else:
             error = "Feed was added less than 7 days ago"
-    return render_template("add_item.html", error=error)
+    return render_template("add_item.html", error=error, title=settings.title)
 
 
 @app.route("/login", methods=['GET', 'POST'])
@@ -88,7 +89,7 @@ def login():
         else:
             error = "Could not authenticate"
 
-    return render_template("login.html", error=error)
+    return render_template("login.html", error=error, title=settings.title)
 
 
 @app.route('/logout')

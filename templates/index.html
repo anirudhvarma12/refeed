@@ -1,30 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<link rel="stylesheet" type="text/css" href="static/style.css">
-	<link href='https://fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
-	<meta content="width=device-width, initial-scale=1" name="viewport">
-	<meta charset="UTF-8">
-	<title>{{title}}</title>
-</head>
-<body>
-	<!-- <div class="content">
-		<h1 class="hero-text">{{ count }} <span>articles shared</span></h1>	
-		<a class="subscribe-link" href="{{url_for('get_feed')}}">Subscribe to {{ title }}</a>
-	</div> -->
-	<ul>
-		{% for item in feeds %}
-		<li><a href="{{ item.url }}">{{ item.title }}</a></li>
-		{% endfor %}
-	</ul>
-	{% if new_page %}
-	<a href="{{ url_for('index', page=new_page) }}">NEXT</a>
-	{% endif %}
-	{% if prev_page %}
-	<a href="{{ url_for('index', page=prev_page ) }}">PREV</a>
-	{% endif %}
-	<div class="footer-center">
-		<a href="https://github.com/anirudhvarma12/refeed" target="_blank">Powered by Refeed </a>
-	</div>
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block body %}
+		<div class="main">
+			<div class="pagination">
+				{% if prev_page %}
+				<a href="{{ url_for('index', page=prev_page ) }}">Previous</a>
+				{% endif %}
+				{% if new_page %}
+				<a href="{{ url_for('index', page=new_page) }}">Next</a>
+				{% endif %}
+			</div>
+			<ul class="link-list">
+				{% for item in feeds %}
+				<li class="link-item">
+					<div class="link-card">
+						<div class="link-content">
+							<div>{{ item.title }}</div>
+						</div>
+						<span class="link-author">added by {{ item.user_id }}</span><a class="link-url" href="{{ item.url }}">Open</a>
+					</div>
+				</li>
+				{% endfor %}
+			</ul>
+		</div>
+		<div class="footer-center">
+			<a href="{{url_for('add')}}">Add Link</a>
+			<a href="https://github.com/anirudhvarma12/refeed" target="_blank">Powered by Refeed </a>
+		</div>
+{% endblock %}

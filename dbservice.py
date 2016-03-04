@@ -10,6 +10,8 @@ Session = sessionmaker()
 Session.configure(bind=engine)
 bcrypt = Bcrypt()
 
+PAGE_SIZE = 25
+
 
 def create_db():
     Base.metadata.create_all(engine)
@@ -43,12 +45,12 @@ def authenticate(username, password):
 def get_feed_items():
     session = Session()
     query = (session.query(FeedItem).order_by(desc(FeedItem.date)))
-    return query.limit(5).all()
+    return query.limit(PAGE_SIZE).all()
 
 
 def get_item_after(startId, offset):
     session = Session()
-    query = (session.query(FeedItem))
+    query = (session.query(FeedItem).order_by(desc(FeedItem.date)))
     return query.limit(startId).offset(offset).all()
 
 

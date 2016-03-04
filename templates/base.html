@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link rel="stylesheet" type="text/css" href="static/style.css">
+	<link href='https://fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
+	<meta content="width=device-width, initial-scale=1" name="viewport">
+	<meta charset="UTF-8">
+	<title>{{title}}</title>
+</head>
+<body>
+	<div class="wrapper">
+		<div class="header">
+			<span class="header-title">{{ title }} Feed</span>
+			<a class="header-link" href="{{url_for('get_feed')}}">Subscribe</a>
+		</div>
+		{% block body %}{% endblock %}
+	</div>
+</body>
