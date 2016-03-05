@@ -14,10 +14,10 @@ dbservice.bcrypt.init_app(app)
 
 @app.route("/")
 def index():
-    ITEM_LIMIT = 8
+    ITEM_LIMIT = 20
     total_count = dbservice.get_feed_count()
     current_page = request.args.get('page')
-    numberOfPages = math.floor(total_count / ITEM_LIMIT)
+    numberOfPages = math.ceil(total_count / ITEM_LIMIT)
     if current_page is None:
         current_page = 1
     else:
@@ -33,7 +33,7 @@ def index():
         current_page = None
     else:
         current_page = current_page + 1
-    return render_template("index.html", title=settings.title, count=dbservice.get_feed_count(), feeds=list, prev_page=prev_page, new_page=current_page)
+    return render_template("index.html", title=settings.title, count=total_count, feeds=list, prev_page=prev_page, new_page=current_page)
 
 
 @app.route("/feed")

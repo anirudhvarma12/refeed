@@ -13,18 +13,21 @@
 			<ul class="link-list">
 				{% for item in feeds %}
 				<li class="link-item">
-					<div class="link-card">
+					<div class="link-card card--inlist">
 						<div class="link-content">
 							<div>{{ item.title }}</div>
+							<span class="link-author">added by {{ item.user_id }}</span>
 						</div>
-						<span class="link-author">added by {{ item.user_id }}</span><a class="link-url" target="_blank" href="{{ item.url }}">Open</a>
+						<div class="link-wrapper">
+						    <a class="link-url" target="_blank" href="{{ item.url }}">Open</a>
+						</div>
 					</div>
 				</li>
 				{% endfor %}
 			</ul>
 		</div>
 		<div class="footer-center">
-			<a href="{{url_for('add')}}">Add Link</a>
+			<a href="{{url_for('add')}}">Add a link</a>
 			<a href="https://github.com/anirudhvarma12/refeed" target="_blank">Powered by Refeed </a>
 		</div>
 {% endblock %}

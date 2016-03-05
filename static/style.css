@@ -93,12 +93,8 @@ form {
 }
 
 .link-item{
-	width: 25%;
-	height: 200px;
 	padding: 0 0.975em;
-	margin-bottom: 1.95em;
-	display: inline-block;
-	float: left;
+	position: relative;
 }
 
 .link-card{
@@ -109,28 +105,34 @@ form {
 	position: relative;
 	box-shadow: 1px 1px 1px #1a1a1a;
 	border: 1px solid #ccc;
+	overflow: hidden;
 }
-
+.card--inlist{
+	border-bottom: 0;
+	padding: 0.975em;
+}
 .link-content{
-	text-align: center;
-	height: 150px;
 	overflow: hidden;
 	font-size: 1.2em;
-	margin-bottom: 10px;
+	width: 75%;
 }
 
-.link-url, .link-author{
-	position: absolute;
-	bottom: 5px;
+.link-content, .link-wrapper{
 	display: inline-block;
+	vertical-align: middle;
+	float: left;
 }
 
+.link-wrapper{
+	width: 25%;
+	text-align: right;
+}
 .link-url{
-	right: 10px;
 	background: #0d3c37;
 	color: #fff;
 	padding: 10px 15px;
 	border-radius: 3px;
+	display: inline-block;
 }
 
 .link-author{
@@ -187,12 +189,16 @@ form {
 		text-align: center;
 	}
 
-	.link-url, .link-author{
+	.link-url{
 		width: 100%;
 		text-align: center;
 		display: block;
-		position:relative;
-		right: 0;
 		margin-bottom: 10px;
+	}
+
+	.link-content, .link-wrapper{
+		display: block;
+		float: none;
+		width: 100%;
 	}
 }
