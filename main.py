@@ -1,7 +1,7 @@
 from flask import Flask, Response
 from flask import render_template, request, session, redirect, url_for
 import rss
-import datetime
+from slack import execute_command, get_response
 import dbservice
 import math
 import settings
@@ -66,31 +66,14 @@ def add():
         url = request.form['url']
         description = request.form['description']
         title = request.form['title']
-        existing_item = dbservice.get_feed_by_url(url)
-        if existing_item is None:
-            print("No existing feed item found")
-            item = None
-            if is_valid_title(title):
-                item = rss.create_feed_item(
-                    url, description, user.username, title)
-            else:
-                item = rss.get_feed_item(url, description, user.username)
-
-            dbservice.store_item(item)
-            error = "Success"
-        elif rss.is_feed_allowed(existing_item.date, datetime.datetime.now()):
-            item = None
-            if is_valid_title(title):
-                item = rss.create_feed_item(
-                    url, description, user.username, title)
-            else:
-                item = rss.get_feed_item(url, description, user.username)
-
-            dbservice.store_item(item)
-            error = "Success"
-
-        else:
-            error = "Feed was added less than 7 days ago"
+        try:
+            result = rss.add_artcle(url, description, title, user)
+            if result == rss.STATUS_OK:
+                error = "Success"
+            elif result == rss.STATUS_EXISTS:
+                error = "Feed was added less than 7 days ago"
+        except:
+            error = 'Could not save'
     return render_template("add_item.html", error=error, title=settings.title)
 
 
@@ -124,6 +107,22 @@ def logout():
     session.pop('login', None)
     return redirect(url_for('index'))
 
+
+@app.route("/slack", methods=['POST'])
+def handle_slack():
+    if settings.slack_token is None or settings.slack_user is None:
+        return get_response('Error: Slack configuration not found')
+    token = request.form['token']
+    if settings.slack_token != token:
+        return get_response('Error: Slack token does not match')
+    user = dbservice.get_user(settings.slack_user)
+    if user is None:
+        return get_response('Error: Slack user does not exist')
+    command = request.form['command']
+    if command == "/refeed":
+        return execute_command(command)
+    else:
+        return get_response("No Command Found")
 
 if __name__ == "__main__":
     app.run()
