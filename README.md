@@ -32,9 +32,12 @@ The `Slash command` supports 2 actions -
 * `add`: Add a new article. 
   Syntax
   `/mycommand add www.mylink.com` where `mycommand` is the name you set in step 2 above.
+
+   ![Add command](http://i.imgur.com/nHFRjj8.png)
 * `random` : Get a random article to read
   Syntax
   `/mycommand random` where `mycommand` is the name you set in step 2 above.
+   ![Get an article to read](http://i.imgur.com/DOh8EnI.png)
 
 # Run
 python main.py
