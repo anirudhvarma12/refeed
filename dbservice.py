@@ -2,6 +2,7 @@ from flask_bcrypt import Bcrypt
 from models import User, FeedItem
 from sqlalchemy import create_engine, desc
 from sqlalchemy.orm import sessionmaker
+from sqlalchemy.sql import func
 from models import Base
 import settings
 
@@ -69,3 +70,8 @@ def store_item(feed_item):
 def get_feed_count():
     session = Session()
     return session.query(FeedItem).count()
+
+
+def get_random():
+    session = Session()
+    return session.query(FeedItem).order_by(func.random()).first()
