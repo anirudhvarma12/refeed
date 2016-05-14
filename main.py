@@ -113,14 +113,15 @@ def handle_slack():
     if settings.slack_token is None or settings.slack_user is None:
         return get_response('Error: Slack configuration not found')
     token = request.form['token']
+    print('Got token ' + token + " given " + settings.slack_token)
     if settings.slack_token != token:
         return get_response('Error: Slack token does not match')
     user = dbservice.get_user(settings.slack_user)
     if user is None:
         return get_response('Error: Slack user does not exist')
-    command = request.form['command']
-    if command == "/refeed":
-        return execute_command(command)
+    text = request.form['text']
+    if text is not None:
+        return execute_command(text, user)
     else:
         return get_response("No Command Found")
 
