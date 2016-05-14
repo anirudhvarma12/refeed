@@ -127,3 +127,4 @@ def handle_slack():
 
 if __name__ == "__main__":
     app.run()
+    app.debug=True

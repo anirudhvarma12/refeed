@@ -78,6 +78,8 @@ def add_artcle(url, description, title, user):
         item = None
         if is_valid_title(title):
             item = create_feed_item(url, description, user.username, title)
+            dbservice.store_item(item)
+            return STATUS_OK
         else:
             try:
                 item = get_feed_item(url, description, user.username)
