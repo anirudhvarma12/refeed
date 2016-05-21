@@ -117,22 +117,10 @@ form {
 	width: 75%;
 }
 
-.link-content, .link-wrapper{
+.link-content{
 	display: inline-block;
 	vertical-align: middle;
 	float: left;
-}
-
-.link-wrapper{
-	width: 25%;
-	text-align: right;
-}
-.link-url{
-	background: #0d3c37;
-	color: #fff;
-	padding: 10px 15px;
-	border-radius: 3px;
-	display: inline-block;
 }
 
 .link-author{
@@ -189,14 +177,7 @@ form {
 		text-align: center;
 	}
 
-	.link-url{
-		width: 100%;
-		text-align: center;
-		display: block;
-		margin-bottom: 10px;
-	}
-
-	.link-content, .link-wrapper{
+	.link-content {
 		display: block;
 		float: none;
 		width: 100%;

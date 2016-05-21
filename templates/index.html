@@ -15,11 +15,8 @@
 				<li class="link-item">
 					<div class="link-card card--inlist">
 						<div class="link-content">
-							<div>{{ item.title }}</div>
+							<div><a href="{{ item.url }}">{{ item.title }}</a></div>
 							<span class="link-author">added by {{ item.user_id }}</span>
-						</div>
-						<div class="link-wrapper">
-						    <a class="link-url" target="_blank" href="{{ item.url }}">Open</a>
 						</div>
 					</div>
 				</li>
