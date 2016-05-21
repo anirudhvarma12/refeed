@@ -33,7 +33,9 @@ def index():
         current_page = None
     else:
         current_page = current_page + 1
-    return render_template("index.html", title=settings.title, count=total_count, feeds=list, prev_page=prev_page, new_page=current_page)
+    return render_template(
+        "index.html", title=settings.title, count=total_count, feeds=list,
+        prev_page=prev_page, new_page=current_page)
 
 
 @app.route("/feed")
@@ -128,4 +130,4 @@ def handle_slack():
 
 if __name__ == "__main__":
     app.run()
-    app.debug=True
+    app.debug = True
