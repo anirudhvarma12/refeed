@@ -71,7 +71,7 @@ def add():
         try:
             result = rss.add_artcle(url, description, title, user)
             if result == rss.STATUS_OK:
-                error = "Success"
+                return redirect(url_for('index'))
             elif result == rss.STATUS_EXISTS:
                 error = "Feed was added less than 7 days ago"
         except:
